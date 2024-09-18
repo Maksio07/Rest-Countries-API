@@ -14,10 +14,9 @@ export default function InputField() {
 				className='search-input py-2 pr-3 pl-[3.6rem] w-[32rem] bg-[--elements] text-[1.4rem] text-[--text] shadow-md rounded-[.6rem]'
 				onChange={ctx.displayMatches}
 			/>
-			<div>
-				<label htmlFor='countries-select'></label>
 				<select
 					name='countries'
+					aria-label='countries-select'
 					id='countries-select'
 					className='countries-select py-3 px-10 text-[1.2rem] shadow-md rounded-[.6rem] cursor-pointer bg-[--elements] text-[--text]'
 					onClick={ctx.filterCountries}>
@@ -40,7 +39,6 @@ export default function InputField() {
 						Oceania
 					</option>
 				</select>
-			</div>
 		</form>
 	)
 }
