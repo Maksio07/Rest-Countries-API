@@ -296,6 +296,10 @@ body {
 	.country-description {
 		font-size: 1.4rem;
 	}
+
+	.error-message {
+		width: 96vw;
+	}
 }
 
 @media (width >= 2000px) {

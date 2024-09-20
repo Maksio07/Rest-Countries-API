@@ -34,7 +34,7 @@ export default function Countries() {
 		<section>
 			<ul ref={scope} className='countries-section grid grid-cols-4 gap-20'>
 				{ctx.searchedCountries !== undefined && ctx.searchedCountries.length === 0 ? (
-					<p className='error-message w-[96vw] mt-[4rem] ml-[-4rem] mr-[-4rem] text-center text-3xl text-[--text]'>
+					<p className='error-message w-[100vw] mt-[4rem] ml-[-4rem] mr-[-4rem] text-center text-3xl text-[--text]'>
 						Typed text does not matches to countries names, please try again.
 					</p>
 				) : (
@@ -42,7 +42,7 @@ export default function Countries() {
 				)}
 
 				{ctx.filteredSearchedCountries !== undefined && ctx.filteredSearchedCountries.length === 0 ? (
-					<p className='error-message w-[96vw] mt-[4rem] ml-[-4rem] mr-[-4rem] text-center text-3xl text-[--text]'>
+					<p className='error-message w-[100vw] mt-[4rem] ml-[-4rem] mr-[-4rem] text-center text-3xl text-[--text]'>
 						There are no searched countries in this area.
 					</p>
 				) : (
