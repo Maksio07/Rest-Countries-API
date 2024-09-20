@@ -13,7 +13,7 @@ export default function Countries() {
 	useEffect(() => {
 		if (
 			(ctx.searchedCountries !== undefined && ctx.searchedCountries.length === 0) ||
-			(ctx.filteredSearchedCountries !== undefined && ctx.filteredSearchedCountries.length === 0)
+			(ctx.filterInSearched !== undefined && ctx.filterInSearched.length === 0)
 		) {
 			return
 		}
@@ -41,7 +41,7 @@ export default function Countries() {
 					''
 				)}
 
-				{ctx.filteredSearchedCountries !== undefined && ctx.filteredSearchedCountries.length === 0 ? (
+				{ctx.filterInSearched !== undefined && ctx.filterInSearched.length === 0 ? (
 					<p className='error-message w-[100vw] mt-[4rem] ml-[-4rem] mr-[-4rem] text-center text-3xl text-[--text]'>
 						There are no searched countries in this area.
 					</p>
