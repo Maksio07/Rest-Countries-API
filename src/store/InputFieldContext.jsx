@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react'
 import CountriesData from '../data.json'
-import { use } from 'framer-motion/client'
 
 export const InputFieldContext = createContext({
 	displayMatches: () => {},
@@ -8,21 +7,31 @@ export const InputFieldContext = createContext({
 	filterCountries: () => {},
 	filteredCountries: '',
 	filterUsed: '',
+	filterInSearched: '',
 })
 
 export default function InputFieldContextProvider({ children }) {
 	const [searchedCountries, setSearchedCountries] = useState(undefined)
 	const [filteredCountries, setFilteredCountries] = useState(CountriesData)
 	const [filterUsed, setFilterUsed] = useState(false)
+	const [filterInSearched, setFilterInSearched] = useState(undefined)
 
 	function searchCountry(wordToMatch, countries) {
-		return countries.filter(country => {
-			const regex = new RegExp(wordToMatch, 'gi')
-			return country.name.match(regex)
-		})
+		if (filterUsed) {
+			return filteredCountries.filter(country => {
+				const regex = new RegExp(wordToMatch, 'gi')
+				return country.name.match(regex)
+			})
+		} else {
+			return countries.filter(country => {
+				const regex = new RegExp(wordToMatch, 'gi')
+				return country.name.match(regex)
+			})
+		}
 	}
 
 	function displayMatches(e) {
+		setFilterInSearched(searchCountry(e.target.value, filteredCountries))
 		setSearchedCountries(searchCountry(e.target.value, CountriesData))
 
 		if (e.target.value === '') {
@@ -35,6 +44,7 @@ export default function InputFieldContextProvider({ children }) {
 
 		if (e.target.value !== '') {
 			setFilterUsed(true)
+			filterSearchedCountries(e)
 		} else {
 			setFilterUsed(false)
 		}
@@ -42,6 +52,14 @@ export default function InputFieldContextProvider({ children }) {
 		setFilteredCountries(filteredData)
 	}
 
+	function filterSearchedCountries(e) {
+		if (searchedCountries !== undefined) {
+			const filteredSearchedArray = searchedCountries.filter(
+				country => country.region.toLowerCase() === e.target.value.toLowerCase()
+			)
+			setFilterInSearched(filteredSearchedArray)
+		}
+	}
 
 	const value = {
 		displayMatches,
@@ -49,6 +67,7 @@ export default function InputFieldContextProvider({ children }) {
 		filterCountries,
 		filteredCountries,
 		filterUsed,
+		filterInSearched,
 	}
 
 	return <InputFieldContext.Provider value={value}>{children}</InputFieldContext.Provider>

@@ -29,7 +29,7 @@ export default function CountryPage() {
 	return (
 		<>
 			<motion.section
-				className='country-section w-[99.2vw] max-w-[2412px]'
+				className='country-section w-[100vw] max-w-[2412px]'
 				initial={{ opacity: 0, y: '-2000px' }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}>
